@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+            <div class="content container-fluid">
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="page-title">Edit Class Course</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'hod_home' %}">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Edit Class Course</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                                    {% include 'includes/messages.html' %}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <form method="post" action="{% url 'update_class_course' %}">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h5 class="form-title"><span>Class Course Information</span></h5>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="staff">Class</label>
+                                                <input type="text" class="form-control"  name="class_course_id"  hidden value="{{cls_course.id}}">
+                                               <select class="form-control" id="staff"  name="cls_id">
+                                                  <option value="">Select Class</option>
+
+                                                  <option value="{{cls_name.id}}">{{cls_name.class_name}} - {{cls_name.session_id}}</option>
+
+                                               </select>
+                                             </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="course">Course</label>
+                                               <select class="form-control" id="course"  name="course_id">
+                                                  <option  value="">Select Course</option>
+                                                   {% for i in course %}
+                                                  <option value="{{i.id}}">{{i.name}}</option>
+                                                   {% endfor %}
+                                               </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-primary">Update Class Course</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock %}

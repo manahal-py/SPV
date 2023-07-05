@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content container-fluid">
+               <div class="page-header">
+                  <div class="row align-items-center">
+                     <div class="col">
+                        <h3 class="page-title">Result</h3>
+                        <ul class="breadcrumb">
+                           <li class="breadcrumb-item"><a href="subjects.html">Dashboard</a></li>
+                           <li class="breadcrumb-item active">Edit Result</li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+    {% include 'includes/messages.html' %}
+      <form method="post" action="{% url 'staff_update_result_student' %}">
+          {% csrf_token %}
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="card">
+                        <div class="card-body">
+                              <div class="row">
+                                 <div class="col-12">
+                                     <h5 class="form-title"><span>Edit Result</span></h5>
+                                 </div>
+
+                                  <div class="col-12 col-sm-6">
+                                 <div class="form-group">
+                                 <label >Subject</label>
+                                       <select class="form-control" name="subject_id">
+                                            <option value="{% for i in result %}{{i.subject_id.id}}{% endfor %}">{{sub}}</option>
+                                      </select>
+                                 </div>
+                                  </div>
+
+                                  <div class="col-12 col-sm-6">
+                                 <div class="form-group">
+                                 <label>Class</label>
+                                       <select class="form-control" name="class_id">
+                                           {% for i in cls %}
+                                            <option value="{{i.class_name.id}}">{{i.class_name}}</option>
+                                           {% endfor %}
+                                       </select>
+                                  </div>
+                                  </div>
+                                  <hr>
+                                  <div class="col-12 col-sm-12">
+                                 <div class="form-group">
+                                 <label>Student List</label>
+                                       <select class="form-control" name="student_id">
+
+<!--                                            <option value="{{i.admin.id}}">ID{{i.id}}:  {{i.admin.first_name}} {{i.admin.last_name}}</option>-->
+                                            <option value="{% for i in result %}{{i.student_id.id}}{% endfor %}">{{stu}}</option>
+                                      </select>
+                                  </div>
+                                  </div>
+
+                                  <div class="col-12 col-sm-6">
+                                 <div class="form-group">
+
+                                 <label>Assignment Marks</label>
+                                       <input type="number" class="form-control" name="assignment_mark" value="{% for i in result %}{{i.assignment_marks}}{% endfor %}">
+                                       <input type="text" class="form-control"  name="result_id" hidden value="{% for i in result %}{{i.id}}{% endfor %}">
+                                       <input type="text" class="form-control"  name="date" hidden value="{% for i in result %}{{i.created_at|date:'Y-m-d'}}{% endfor %}">
+                                  </div>
+
+                                  </div>
+                                  <div class="col-12 col-sm-6">
+                                 <div class="form-group">
+
+                                 <label>Quiz Marks</label>
+                                       <input type="number" class="form-control" name="quiz_mark" value="{% for i in result %}{{i.quiz_marks}}{% endfor %}">
+                                  </div>
+
+                                  </div>
+                                  <div class="col-12 col-sm-6">
+                                 <div class="form-group">
+                                        <label>Exam Marks</label>
+                                       <input type="number" class="form-control" name="Exam_mark" value="{% for i in result %}{{i.exam_marks}}{% endfor %}">
+
+                                  </div>
+                                  </div>
+
+
+                                 <br>
+                                <div class="col-10 mr-3">
+                                    <button type="submit" class="btn btn-primary">Update Result</button>
+                                 </div>
+                              </div>
+                            <hr>
+                          </div>
+                        </div>
+                     </div>
+               </div>
+      </form>
+</div>
+
+{% endblock %}

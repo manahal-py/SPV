@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content container-fluid">
+   <div class="page-header">
+      <div class="row align-items-center">
+         <div class="col">
+            <h3 class="page-title">View Result</h3>
+            <ul class="breadcrumb">
+               <li class="breadcrumb-item"><a href="{% url 'hod_home' %}">Dashboard</a></li>
+               <li class="breadcrumb-item active">View Result</li>
+            </ul>
+         </div>
+      </div>
+   </div>
+            {% include 'includes/messages.html' %}
+   {% if action is None %}
+      <form method="post" action="?action=Show-Students">
+          {% csrf_token %}
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="card">
+                        <div class="card-body">
+                              <div class="row">
+                                 <div class="col-12">
+                                     <h5 class="form-title"><span>View Result</span></h5>
+                                 </div>
+
+                                  <div class="col-12 col-sm-6">
+                                     <div class="form-group">
+                                     <label >Subject</label>
+                                           <select class="form-control" name="subject_id">
+                                                <option>-- Select Subject--</option>
+                                                {% for i in subjects %}
+                                                <option value="{{i.id}}">{{i.name}} - {{i.course.name}}</option>
+                                                {% endfor %}
+
+                                          </select>
+                                     </div>
+                                  </div>
+                                  <div class="col-12 col-sm-6">
+                                     <div class="form-group">
+                                     <label >Class</label>
+                                           <select class="form-control" name="class_id">
+                                                <option>-- Select Class--</option>
+                                                {% for i in cls %}
+                                                <option value="{{i.class_ref.id}}">{{i.class_ref}}</option>
+                                                {% endfor %}
+
+                                          </select>
+                                     </div>
+                                  </div>
+
+                                 <br>
+                                <div class="col-10 mr-3">
+                                    <button type="submit" class="btn btn-primary">Fetch Result</button>
+                                 </div>
+                              </div>
+                            <hr>
+                          </div>
+                        </div>
+                     </div>
+               </div>
+      </form>
+      {% else %}
+
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="card">
+                        <div class="card-body">
+                              <div class="row">
+                                 <div class="col-12">
+                                     <h5 class="form-title"><span>View Result</span></h5>
+                                 </div>
+
+                                  <div class="col-12 col-sm-6">
+                                     <div class="form-group">
+                                     <label >Subject</label>
+                                           <select class="form-control" name="subject_id">
+                                                <option value="{{get_subject.id}}">{{get_subject.name}} - {{get_subject.course.name}}</option>
+                                          </select>
+                                     </div>
+                                  </div>
+                                  <div class="col-12 col-sm-6">
+                                     <div class="form-group">
+                                     <label >Class</label>
+                                           <select class="form-control" name="subject_id">
+
+                                                <option value="{{get_class.id}}">{{get_class}}</option>
+
+                                          </select>
+                                     </div>
+                                  </div>
+                              </div>
+
+                          </div>
+                        </div>
+                     </div>
+               </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                     <div class="card card-table">
+                        <div class="card-body">
+                           <div class="table-responsive">
+                              <table id="table_id" class="table table-hover table-center mb-0">
+                                 <thead>
+                                 <tr>
+                                        <th>Name</th>
+                                        <th>Course</th>
+                                        <th>Gender</th>
+                                     </tr>
+                                     </thead>
+                                     <tbody>
+                                     {% for i in students_course %}
+                                     <tr>
+                                        <td>
+                                           <h2 class="table-avatar">
+                                              <a href="student-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="/{{i.student.admin.profile_pic}}" alt="User Image"></a>
+                                              <a href="{% url 'staff_view_result_student' i.student.id get_subject.course %}">{{i.student.admin.first_name}}&nbsp;{{i.student.admin.last_name}}</a>
+                                           </h2>
+                                        </td>
+                                        <td>{{get_subject.course.name}}</td>
+                                        <td>{{i.student.gender}}</td>
+                                     </tr>
+                                 {% endfor %}
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+      {% endif %}
+</div>
+{% endblock %}

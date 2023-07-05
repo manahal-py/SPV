@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+            <div class="content container-fluid">
+                   <div class="page-header">
+                      <div class="row">
+                         <div class="col-sm-12">
+                            <h3 class="page-title">Muhammad's Result </h3>
+                            <ul class="breadcrumb">
+                               <li class="breadcrumb-item active">Progress Chart</li>
+                            </ul>
+                         </div>
+                      </div>
+                   </div>
+               <div class="row">
+                  <div class="col-12 col-lg-12">
+                     <div class="card card-chart">
+                        <div class="card-header">
+                           <div class="row align-items-center">
+                              <div class="col-6">
+                                 <h5 class="card-title">Number of Students</h5>
+                              </div>
+<!--                              <div class="col-6">-->
+<!--                                 <ul class="list-inline-group text-right mb-0 pl-0">-->
+<!--                                    <li class="list-inline-item">-->
+<!--                                       <div class="form-group mb-0 amount-spent-select">-->
+<!--                                          <select class="form-control form-control-sm">-->
+<!--                                             <option>Today</option>-->
+<!--                                             <option>Last Week</option>-->
+<!--                                             <option>Last Month</option>-->
+<!--                                          </select>-->
+<!--                                       </div>-->
+<!--                                    </li>-->
+<!--                                 </ul>-->
+<!--                              </div>-->
+
+                           </div>
+                        </div>
+
+                         <div class="card-body">
+                               <div id="barc"></div>
+                        </div>
+
+                        <script>
+
+                              $(document).ready(function() {
+
+                                  // Area chart
+
+                                  // Bar chart
+
+                                  if ($('#barc').length > 0) {
+                                  var optionsBar = {
+                                      chart: {
+                                          type: 'bar',
+                                          height: 350,
+                                          width: '100%',
+                                          stacked: true,
+                                          toolbar: {
+                                              show: false
+                                          },
+                                      },
+                                      dataLabels: {
+                                          enabled: false
+                                      },
+                                      plotOptions: {
+                                          bar: {
+                                              columnWidth: '45%',
+                                          }
+                                      },
+                                      series: [{
+                                          name: "Boys",
+                                          color: '#ff4500',
+                                          data: [{{student_gender_male_count}},],
+                                      }, {
+                                          name: "Girls",
+                                          color: '#6c757d',
+                                          data: [{{student_gender_female_count}}],
+                                      }],
+                                      labels: [{% for i in session_year %} '{{ i }}', {% endfor %}],
+                                      xaxis: {
+                                          labels: {
+                                              style: {
+                                                  colors: '#777'
+                                              }
+                                          },
+                                          axisBorder: {
+                                              show: false
+                                          },
+                                          axisTicks: {
+                                              show: false
+                                          },
+                                      },
+                                      yaxis: {
+                                          axisBorder: {
+                                              show: false
+                                          },
+                                          axisTicks: {
+                                              show: false
+                                          },
+                                          labels: {
+                                              style: {
+                                                  colors: '#777'
+                                              }
+                                          }
+                                      },
+                                      title: {
+                                          text: '',
+                                          align: 'left',
+                                          style: {
+                                              fontSize: '18px'
+                                          }
+                                      }
+
+                                  }
+
+                                  var chartBar = new ApexCharts(document.querySelector('#barc'), optionsBar);
+                                  chartBar.render();
+                                  }
+
+                              });
+                        </script>
+                     </div>
+                  </div>
+
+               </div>
+            </div>
+{% endblock %}

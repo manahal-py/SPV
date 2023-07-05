@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content container-fluid">
+    <div class="page-header">
+      <div class="row align-items-center">
+         <div class="col">
+            <h3 class="page-title">Session</h3>
+            <ul class="breadcrumb">
+               <li class="breadcrumb-item"><a href="{% url 'hod_home' %}">Dashboard</a></li>
+               <li class="breadcrumb-item active">Add Session</li>
+            </ul>
+         </div>
+      </div>
+   </div>
+ <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" action="{% url 'add_session' %}" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-12">
+                                <h5 class="form-title"><span>Add Session</span></h5>
+                                    {% include 'includes/messages.html' %}
+                            </div>
+                            <div class="col-12 col-sm-12">
+                                <div class="form-group">
+                                    <label for="StartingDate">Session Date</label>
+                                    <input type="text" class="form-control" id="StartingDate" required name="start_date" placeholder="Enter Year (2023)" >
+                                    <div class="invalid-feedback">
+                                        Please enter a Session.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Add Session</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+ </div>
+</div>
+{% endblock %}

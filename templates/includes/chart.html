@@ -1,0 +1,48 @@
+{% extends 'charts_base.html' %}
+{% block content %}
+{% load static %}
+<!--   call chart by id-->
+    <div class="content container-fluid">
+        <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <script>
+        $(document).ready(function(){
+                const ctx = document.getElementById('myChart');
+
+                  new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                      datasets: [{
+                        label: '# of Votes',
+                        data: [12, 19, 3, 5, 2, 3],
+                        borderWidth: 2
+                      }]
+                    },
+                    options: {
+                      scales: {
+                        y: {
+                          beginAtZero: true
+                        }
+                      }
+                    }
+                  });
+            });
+    </script>
+                <div class="card-body">
+                    <canvas id="myChart"></canvas>
+                </div>
+
+            </div>
+        </div>
+            <div class="col-sm-12">
+            <div class="card">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/T1bnRJFNjic" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            </div>
+        </div>
+    </div>
+<!--Muhammad-->
+
+{% endblock %}

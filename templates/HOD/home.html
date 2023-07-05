@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+            <div class="content container-fluid">
+                   <div class="page-header">
+                      <div class="row">
+                         <div class="col-sm-12">
+                            <h3 class="page-title">Admin!</h3>
+                            <ul class="breadcrumb">
+                               <li class="breadcrumb-item active">Dashboard</li>
+                            </ul>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="row">
+                      <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                         <div class="card bg-one w-100">
+                        <div class="card-body">
+                           <div class="db-widgets d-flex justify-content-between align-items-center">
+                              <div class="db-icon">
+                                 <i class="fas fa-user-graduate"></i>
+                              </div>
+                              <div class="db-info">
+                                 <h3>{{student_count}}</h3>
+                                 <h6>Students</h6>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                     <div class="card bg-two w-100">
+                        <div class="card-body">
+                           <div class="db-widgets d-flex justify-content-between align-items-center">
+                              <div class="db-icon">
+                                 <i class="fas fa-chalkboard-teacher"></i>
+                              </div>
+                              <div class="db-info">
+                                 <h3>{{staff_count}}</h3>
+                                 <h6>Staff</h6>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                     <div class="card bg-three w-100">
+                        <div class="card-body">
+                           <div class="db-widgets d-flex justify-content-between align-items-center">
+                              <div class="db-icon">
+                                 <i class="fas fa-graduation-cap"></i>
+                              </div>
+                              <div class="db-info">
+                                 <h3>{{course_count}}</h3>
+                                 <h6>Courses</h6>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                     <div class="card bg-four w-100">
+                        <div class="card-body">
+                           <div class="db-widgets d-flex justify-content-between align-items-center">
+                              <div class="db-icon">
+                                 <i class="fas fa-book-reader"></i>
+                              </div>
+                              <div class="db-info">
+                                 <h3>{{staff_subject_count}}</h3>
+                                 <h6>Subjects</h6>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+                <div class="row d-flex align-item-center justify-content-center">
+                      <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                         <div class="card bg-one w-100">
+                        <div class="card-body">
+                           <div class="db-widgets d-flex justify-content-between align-items-center">
+                              <div class="db-icon">
+                                 <i class="fas fa-user-graduate"></i>
+                              </div>
+                              <div class="db-info">
+                                 <h3>{{session_year_count}}</h3>
+                                 <h6>Sessions</h6>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                     <div class="card bg-two w-100">
+                        <div class="card-body">
+                           <div class="db-widgets d-flex justify-content-between align-items-center">
+                              <div class="db-icon">
+                                 <i class="fas fa-chalkboard-teacher"></i>
+                              </div>
+                              <div class="db-info">
+                                 <h3>{{class_count}}</h3>
+                                 <h6>Classes</h6>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                     <div class="card bg-three w-100">
+                        <div class="card-body">
+                           <div class="db-widgets d-flex justify-content-between align-items-center">
+                              <div class="db-icon">
+                                 <i class="fas fa-graduation-cap"></i>
+                              </div>
+                              <div class="db-info">
+                                 <h3>{{stu_class_count}}</h3>
+                                  <h6>Student Classe</h6>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+<!--                  <div class="col-xl-3 col-sm-6 col-12 d-flex">-->
+<!--                     <div class="card bg-four w-100">-->
+<!--                        <div class="card-body">-->
+<!--                           <div class="db-widgets d-flex justify-content-between align-items-center">-->
+<!--                              <div class="db-icon">-->
+<!--                                 <i class="fas fa-book-reader"></i>-->
+<!--                              </div>-->
+<!--                              <div class="db-info">-->
+<!--                                 <h3>{{staff_subject_count}}</h3>-->
+<!--                                 <h6>Subjects</h6>-->
+<!--                              </div>-->
+<!--                           </div>-->
+<!--                        </div>-->
+<!--                     </div>-->
+<!--                  </div>-->
+               </div>
+                <div class="row">
+      <div class="col-sm-12">
+         <div class="card card-table">
+            <div class="card-body">
+               <div class="table-responsive">
+                  <div class="col-12 col-lg-12">
+                     <div class="card card-chart">
+                        <div class="card-header">
+                           <div class="row align-items-center">
+                              <div class="col-6">
+                                 <h5 class="card-title">Number of Students</h5>
+                              </div>
+                           </div>
+                        </div>
+                         <div class="card-body">
+                           <div id="result_s">
+                           </div>
+                        </div>
+
+                        <script>
+
+                              $(document).ready(function() {
+
+                                  // Area chart
+
+                                  // Bar chart
+                                if ($('#result_s').length > 0) {
+                                    var optionsBar = {
+                                        chart: {
+                                            type: 'bar',
+                                            height: 350,
+                                            width: '100%',
+                                            stacked: true,
+                                            toolbar: {
+                                                show: false
+                                            },
+                                        },
+                                        dataLabels: {
+                                            enabled: false
+                                        },
+                                        plotOptions: {
+                                            bar: {
+                                                columnWidth: '45%',
+                                            }
+                                        },
+
+                                        series: [{
+                                            name: "Boys",
+                                            color: '#ff4500',
+                                            data: [{% for i in male %} '{{ i }}', {% endfor %}],
+                                        }, {
+                                            name: "Girls",
+                                            color: '#008080',
+                                            data: [{% for i in female %} '{{ i }}', {% endfor %}],
+                                        }],
+                                        labels: [{% for i in session_year %} '{{ i }}', {% endfor %}],
+                                        xaxis: {
+                                            labels: {
+                                                show: false
+                                            },
+                                            axisBorder: {
+                                                show: false
+                                            },
+                                            axisTicks: {
+                                                show: false
+                                            },
+                                        },
+                                        yaxis: {
+                                            axisBorder: {
+                                                show: false
+                                            },
+                                            axisTicks: {
+                                                show: false
+                                            },
+                                            labels: {
+                                                style: {
+                                                    colors: '#777'
+                                                }
+                                            }
+                                        },
+                                        title: {
+                                            text: '',
+                                            align: 'left',
+                                            style: {
+                                                fontSize: '18px'
+                                            }
+                                        }
+
+                                    }
+
+                                    var chartBar = new ApexCharts(document.querySelector('#result_s'), optionsBar);
+                                    chartBar.render();
+                                    }
+
+                              });
+                        </script>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+            </div>
+{% endblock %}

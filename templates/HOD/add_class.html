@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+            <div class="content container-fluid">
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="page-title">Add Class</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'hod_home' %}">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Class</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                                    {% include 'includes/messages.html' %}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <form method="post" action="{% url 'add_class' %}" class="needs-validation" novalidate>
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h5 class="form-title"><span>Class Information</span></h5>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="staff">Class</label>
+                                                <input type="text" class="form-control" id="staff" required name="class_name" >
+                                                <div class="invalid-feedback">
+                                                     Please choose a Class.
+                                                </div>
+                                             </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="course">Session</label>
+                                               <select class="form-control" id="course" required name="session_id">
+                                                  <option value="">Select Session</option>
+                                                   {% for i in session %}
+                                                  <option value="{{i.id}}">{{i}}</option>
+                                                   {% endfor %}
+                                               </select>
+                                                <div class="invalid-feedback">
+                                                     Please choose a session.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-primary">Add Class</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock %}
